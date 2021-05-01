@@ -1,3 +1,7 @@
-track	image	text
-Reimagined - Once Upon a Time in the West Theme.mp3	Once_upon_a_Time_in_the_West.jpg	Once Upon a Time in the West - classic Spaghetti western.
-Reimagined - Terminator.mp3	Terminator1984movieposter.jpg	Classic Sci-fi from the 80s.
+track	image	text	imdb
+Reimagined - Once Upon a Time in the West Theme.mp3	Once_upon_a_Time_in_the_West.jpg	Once Upon a Time in the West - classic Spaghetti western.	tt0064116
+Reimagined - Terminator.mp3	Terminator1984movieposter.jpg	Classic Sci-fi from the 80s.	tt0088247
+Reimagined - Village of the Damned.mp3	village_damned.jpg	Classic horror based on the Midwitch Cuckoos	tt0054443
+Reimagined - Witchfinder General.mp3	witchfinder_general.jpg	Classic Hammer Horror from the 1960s	tt0063285
+Reimagined - I Walked with a Zombie.mp3	I_walked_with_zombie.jpg	Classic Horror from the 1950s	tt0036027
+Reimagined - The Night Manager Theme.mp3	the_night_manager.jpg	Espionage thriller about an arms dealer, adapted from the John LeCarre novel	tt1399664
