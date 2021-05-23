@@ -33,12 +33,17 @@ image.vec <- c("tracingRain.jpg",
                "aom_wildflower_art.jpg",
                "aom_pub6754.jpg")
 
+theatre <- read.csv(paste0(wd,"/www/TheatreMusic.txt"),
+                    sep = "\t",
+                    stringsAsFactors = FALSE,
+                    header = TRUE)
+
 
 ui <- navbarPage(theme = shinytheme("darkly"),
                  "abominable | composer | showreel",
                  tabPanel("Film Scores Reimagined",
                           #titlePanel("abominable | composer | showreel"),
-                          img(src='images/circle-cropped.png', align = "right",width = 90),
+                          #img(src='images/circle-cropped.png', align = "right",width = 90),
                           #ui <- fluidPage(theme = shinytheme("darkly"),
                           ## Application title
                           #titlePanel("abominable | composer | showreel"),
@@ -46,9 +51,10 @@ ui <- navbarPage(theme = shinytheme("darkly"),
                           # Sidebar with a slider input for number of bins 
                           sidebarLayout(
                             sidebarPanel(width = 3,
+                                         img(src='images/circle-cropped.png', align = "left",width = 90),
                                          selectInput(
                                            inputId = "fileChooser",
-                                           label = "Tracks",
+                                           label = "",
                                            choices = reimagined,
                                            selected = NULL,
                                            multiple = FALSE,
@@ -82,6 +88,9 @@ ui <- navbarPage(theme = shinytheme("darkly"),
                             ),
                             ####mainpanel 1 ####
                             mainPanel(width = 9,
+                                      img(src='images/abominable_banner.png', align = "left",width='90%'),
+                                      #img(src='images/circle-cropped.png', align = "right",width = 90),
+                                      #tags$h2("abominable - original compositions"),
                                       fluidRow(
                                         column(width = 9,
                                                uiOutput("trackDesc"),
@@ -176,9 +185,10 @@ ui <- navbarPage(theme = shinytheme("darkly"),
                  ),#tab panel end
                  
                  tabPanel("Theatre Work",
-                          img(src='images/aom-circle-cropped.png', align = "right",width = 90),
                           sidebarLayout(
                             sidebarPanel(width = 4,
+                                         img(src='images/circle-cropped.png', align = "left",width = 90),
+                                         tags$h2('Original compositions and sound design for Theatre'),
                                          tags$h4('Under Construction'),
                                          fluidRow(
                                            column(width = 2,
@@ -194,9 +204,37 @@ ui <- navbarPage(theme = shinytheme("darkly"),
                                          ),
                                          hr()
                             ),
-                            ####mainpanel 2 ####
+                            ####mainpanel 3 Theatre work ####
                             mainPanel(width = 8,
-                                      tags$h4('Unde Construction'),
+                                      tabsetPanel(type = "tabs",
+                                                  tabPanel(tags$h3("King Lear in New York"),
+                                                           img(src='images/kliny-hostry-2016.jpg', align = "left",width="90%")
+                                                           ),
+                                                  tabPanel(tags$h3("Zastrozzi"),
+                                                           img(src='images/zaztrozzi001.png', align = "left",width="90%"),
+                                                           ),
+                                                  tabPanel(tags$h3("Richard III"),
+                                                           tags$h4('Under Construction')
+                                                           ),
+                                                  tabPanel(tags$h3("Magnificence"),
+                                                           tags$h4('The Shoe Factory 2017'),
+                                                           uiOutput("DescMag"),
+                                                           uiOutput("LinkMag"),
+                                                           ),
+                                                  tabPanel(tags$h3("Relatively Speaking"),
+                                                           tags$h4('Maddermarket Theatre 2018'),
+                                                           uiOutput("DescRelSpeak"),
+                                                           uiOutput("LinkRelSpeak"),
+                                                           fluidRow(
+                                                             column(width = 7,
+                                                                    HTML('<iframe width="560" height="315" src="https://www.youtube.com/embed/hE0gp8SAzT0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>')
+                                                             ),
+                                                             column(width=5,
+                                                                    HTML('<iframe width="350" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=1.290823817253113%2C52.62972561117716%2C1.2935060262680056%2C52.63075449714188&amp;layer=mapnik&amp;marker=52.63024005718356%2C1.292164921760559" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/?mlat=52.63024&amp;mlon=1.29216#map=19/52.63024/1.29216">View Larger Map</a></small>'),
+                                                             )
+                                                           )
+                                                           )
+                                      ),
                                       hr(),
                                       uiOutput("abText3"),
                                       tags$h6("Last Updated May 2021"),
@@ -429,6 +467,31 @@ server <- function(input, output) {
     
     output$stick3 <- renderUI({
       HTML('<img src="images/StickStack1.gif" alt="stick" width=30>')
+    })
+    
+    ####Magnificance####
+    output$DescMag <- renderUI({
+      desc <- theatre[2,2]
+      HTML(paste0('<h5>',desc,'</h5>'))
+    })
+    
+    output$LinkMag <- renderUI({
+      link <- theatre[2,3]
+      linkText <- theatre[2,1]
+      HTML(paste0('<a href="',link,'" target="blank">',linkText,'</a><hr>'))
+    })
+    
+    ####Relatively Speaking####
+    
+    output$DescRelSpeak <- renderUI({
+      desc <- theatre[1,2]
+      HTML(paste0('<h5>',desc,'</h5>'))
+    })
+    
+    output$LinkRelSpeak <- renderUI({
+      link <- theatre[1,3]
+      linkText <- theatre[1,1]
+      HTML(paste0('<a href="',link,'" target="blank">',linkText,'</a><hr>'))
     })
     
 }
